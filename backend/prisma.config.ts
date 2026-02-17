@@ -3,11 +3,11 @@ import 'dotenv/config';
 
 export default defineConfig({
     schema: 'prisma/schema.prisma',
-    datasource: {
-        provider: 'postgresql',
-        url: process.env.DATABASE_URL
-    },
-    migrations: {
-        seed: 'node prisma/seed.js'
+    // Prisma 7 uses adapter or accelerate, but for migrate we might need this or just env
+    // creating a standard config that points to env
+    datasources: {
+        db: {
+            url: process.env.DATABASE_URL
+        }
     }
 });
